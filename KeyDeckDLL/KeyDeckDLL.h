@@ -1,9 +1,9 @@
 #pragma once
 
 #ifdef KEYDECKDLL_EXPORTS
-#define KEYDECKDLL_API __declspec(dllexport)
+#define KEYDECKDLL_API extern "C" __declspec(dllexport)
 #else
-#define KEYDECKDLL_API __declspec(dllimport)
+#define KEYDECKDLL_API extern "C" __declspec(dllimport)
 #endif
 
 KEYDECKDLL_API BOOL InstallHook(HWND hwndParent);

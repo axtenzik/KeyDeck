@@ -9,10 +9,11 @@ namespace KeyDeck
 {
     class HookDll
     {
-        [DllImport("KeyDeck.DLL")]
+        //C:\Users\brver\Documents\GitHub\KeyDeck\Debug
+        [DllImport("C:\\Users\\brver\\Documents\\GitHub\\KeyDeck\\Debug\\KeyDeckDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public extern static bool InstallHook(IntPtr hWndParent);
 
-        [DllImport("KeyDeck.DLL")]
+        [DllImport("C:\\Users\\brver\\Documents\\GitHub\\KeyDeck\\Debug\\KeyDeckDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public extern static bool UninstallHook();
     }
 }
