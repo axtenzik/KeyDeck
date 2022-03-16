@@ -30,11 +30,12 @@ namespace KeyDeck
         private void InitializeComponent()
         {
             this.PrimaryLabel = new System.Windows.Forms.Label();
-            this.PrimaryTextBox = new System.Windows.Forms.TextBox();
             this.ExitButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
             this.KeyName = new System.Windows.Forms.Label();
             this.KeyHeader = new System.Windows.Forms.Label();
+            this.KeyPressedLabel = new System.Windows.Forms.Label();
+            this.CurrentPressLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // PrimaryLabel
@@ -46,21 +47,11 @@ namespace KeyDeck
             this.PrimaryLabel.TabIndex = 0;
             this.PrimaryLabel.Text = "Please type with desired primary keyboard:";
             // 
-            // PrimaryTextBox
-            // 
-            this.PrimaryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PrimaryTextBox.Location = new System.Drawing.Point(13, 32);
-            this.PrimaryTextBox.Name = "PrimaryTextBox";
-            this.PrimaryTextBox.Size = new System.Drawing.Size(359, 23);
-            this.PrimaryTextBox.TabIndex = 1;
-            this.PrimaryTextBox.TextChanged += new System.EventHandler(this.PrimaryTextBox_TextChanged);
-            // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(297, 126);
+            this.ExitButton.Location = new System.Drawing.Point(268, 116);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(75, 23);
+            this.ExitButton.Size = new System.Drawing.Size(104, 33);
             this.ExitButton.TabIndex = 2;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
@@ -68,9 +59,9 @@ namespace KeyDeck
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(216, 126);
+            this.StartButton.Location = new System.Drawing.Point(158, 116);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(75, 23);
+            this.StartButton.Size = new System.Drawing.Size(104, 33);
             this.StartButton.TabIndex = 3;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
@@ -88,22 +79,41 @@ namespace KeyDeck
             // KeyHeader
             // 
             this.KeyHeader.AutoSize = true;
-            this.KeyHeader.Location = new System.Drawing.Point(13, 81);
+            this.KeyHeader.Location = new System.Drawing.Point(112, 62);
             this.KeyHeader.Name = "KeyHeader";
-            this.KeyHeader.Size = new System.Drawing.Size(25, 15);
+            this.KeyHeader.Size = new System.Drawing.Size(29, 15);
             this.KeyHeader.TabIndex = 5;
-            this.KeyHeader.Text = "n/a";
+            this.KeyHeader.Text = "N/A";
+            // 
+            // KeyPressedLabel
+            // 
+            this.KeyPressedLabel.AutoSize = true;
+            this.KeyPressedLabel.Location = new System.Drawing.Point(13, 35);
+            this.KeyPressedLabel.Name = "KeyPressedLabel";
+            this.KeyPressedLabel.Size = new System.Drawing.Size(75, 15);
+            this.KeyPressedLabel.TabIndex = 6;
+            this.KeyPressedLabel.Text = "Key pressed: ";
+            // 
+            // CurrentPressLabel
+            // 
+            this.CurrentPressLabel.AutoSize = true;
+            this.CurrentPressLabel.Location = new System.Drawing.Point(95, 35);
+            this.CurrentPressLabel.Name = "CurrentPressLabel";
+            this.CurrentPressLabel.Size = new System.Drawing.Size(29, 15);
+            this.CurrentPressLabel.TabIndex = 7;
+            this.CurrentPressLabel.Text = "N/A";
             // 
             // Entry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 161);
+            this.Controls.Add(this.CurrentPressLabel);
+            this.Controls.Add(this.KeyPressedLabel);
             this.Controls.Add(this.KeyHeader);
             this.Controls.Add(this.KeyName);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.ExitButton);
-            this.Controls.Add(this.PrimaryTextBox);
             this.Controls.Add(this.PrimaryLabel);
             this.Name = "Entry";
             this.Text = "KeyDeck";
@@ -115,10 +125,11 @@ namespace KeyDeck
         #endregion
 
         private System.Windows.Forms.Label PrimaryLabel;
-        private System.Windows.Forms.TextBox PrimaryTextBox;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label KeyName;
         private System.Windows.Forms.Label KeyHeader;
+        private System.Windows.Forms.Label KeyPressedLabel;
+        private System.Windows.Forms.Label CurrentPressLabel;
     }
 }

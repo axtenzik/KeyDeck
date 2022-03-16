@@ -48,16 +48,21 @@ namespace KeyDeck
             {
                 case (int)WindowsMessages.INPUT:
                     RAWINPUT raw = new RAWINPUT();
-                    int outSize = 0;
                     uint size = (uint)Marshal.SizeOf(typeof(RAWINPUT));
-                    outSize = User32.GetRawInputData(m.LParam, RAWINPUTCOMMAND.RID_INPUT, out raw, ref size, Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+                    User32.GetRawInputData(m.LParam, RAWINPUTCOMMAND.RID_INPUT, out raw, ref size, Marshal.SizeOf(typeof(RAWINPUTHEADER)));
 
                     uint bufferSize = 0;
                     User32.GetRawInputDeviceInfo(raw.Header.Device, (uint)DeviceInfoTypes.RIDI_DEVICENAME, IntPtr.Zero, ref bufferSize);
                     IntPtr pData = Marshal.AllocHGlobal(((int)bufferSize) * 2);
                     User32.GetRawInputDeviceInfo(raw.Header.Device, (uint)DeviceInfoTypes.RIDI_DEVICENAME, pData, ref bufferSize);
                     name = Marshal.PtrToStringAnsi(pData);
-                    this.KeyHeader.Text = name;
+                    //this.KeyHeader.Text = name;
+                    this.KeyHeader.Text = "Keyboard 1";
+                    ushort vKey = (ushort)raw.Data.Keyboard.VirtualKey;
+                    //this.PrimaryTextBox.Text = ((VirtualKeys)vKey).ToString();
+                    //this.PrimaryTextBox.Text = "";
+                    this.CurrentPressLabel.Text = ((VirtualKeys)vKey).ToString();
+                    this.StartButton.Enabled = true;
 
                     break;
             }
@@ -65,7 +70,7 @@ namespace KeyDeck
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            Keyboards.primaryKeyboard = name;
+            PriKeyboard.PrimaryKeyboard = name;
             var keyDeckMain = new KeyDeckMain(this);
             keyDeckMain.Show();
             //Application.Run(new KeyDeckMain());
@@ -74,7 +79,18 @@ namespace KeyDeck
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            const string message = "Are you sure that you would like to close the application?";
+            const string caption = "Application Closing";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            // If the no button was pressed ...
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            //this.Close();
         }
 
         private void PrimaryTextBox_TextChanged(object sender, EventArgs e)

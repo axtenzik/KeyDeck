@@ -20,7 +20,15 @@ namespace KeyDeck
 
         [DllImport("user32.dll")]
         public static extern bool RegisterRawInputDevices([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] RAWINPUTDEVICE[] pRawInputDevices, int uiNumDevices, int cbSize);
+
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
+
+        public const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
+        public const uint KEYEVENTF_KEYUP = 0x0002;
     }
+
+
 
     public enum RAWINPUTCOMMAND : uint
     {
@@ -191,8 +199,7 @@ namespace KeyDeck
     /// <summary>
     /// Enumeration for virtual keys.
     /// </summary>
-    public enum VirtualKeys
-        : ushort
+    public enum VirtualKeys : ushort
     {
         LeftButton = 0x01,
         RightButton = 0x02,
