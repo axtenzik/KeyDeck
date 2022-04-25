@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace KeyDeck
 {
+    //code was used from https://www.pinvoke.net/
+    //This saved having to figure out and write all the code myself
+
     class User32
     {
         [DllImport("User32.dll")]

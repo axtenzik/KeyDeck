@@ -46,8 +46,9 @@ namespace KeyDeck
             this.FunctionDropDown.Items.AddRange(new object[] {
             "Press keyboard keys",
             "Insert desired text",
-            "Open file, application or script",
-            "Send data over we sockets"});
+            "Open Folder",
+            "Open Program",
+            "Send data over socket connection"});
             this.FunctionDropDown.Location = new System.Drawing.Point(152, 44);
             this.FunctionDropDown.Name = "FunctionDropDown";
             this.FunctionDropDown.Size = new System.Drawing.Size(320, 29);
@@ -90,16 +91,16 @@ namespace KeyDeck
             this.FunctionDataLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FunctionDataLabel.Location = new System.Drawing.Point(13, 85);
             this.FunctionDataLabel.Name = "FunctionDataLabel";
-            this.FunctionDataLabel.Size = new System.Drawing.Size(36, 21);
+            this.FunctionDataLabel.Size = new System.Drawing.Size(42, 21);
             this.FunctionDataLabel.TabIndex = 4;
-            this.FunctionDataLabel.Text = "Text";
+            this.FunctionDataLabel.Text = "Data";
             // 
             // InputDataTextBox
             // 
             this.InputDataTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.InputDataTextBox.Location = new System.Drawing.Point(152, 85);
             this.InputDataTextBox.Name = "InputDataTextBox";
-            this.InputDataTextBox.Size = new System.Drawing.Size(320, 170);
+            this.InputDataTextBox.Size = new System.Drawing.Size(320, 200);
             this.InputDataTextBox.TabIndex = 5;
             this.InputDataTextBox.Text = "";
             this.InputDataTextBox.TextChanged += new System.EventHandler(this.InputDataTextBox_TextChanged);
@@ -107,7 +108,7 @@ namespace KeyDeck
             // CancelButton
             // 
             this.CancelButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CancelButton.Location = new System.Drawing.Point(368, 416);
+            this.CancelButton.Location = new System.Drawing.Point(368, 291);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(104, 33);
             this.CancelButton.TabIndex = 6;
@@ -118,7 +119,7 @@ namespace KeyDeck
             // SaveButton
             // 
             this.SaveButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SaveButton.Location = new System.Drawing.Point(258, 416);
+            this.SaveButton.Location = new System.Drawing.Point(258, 291);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(104, 33);
             this.SaveButton.TabIndex = 7;
@@ -130,7 +131,7 @@ namespace KeyDeck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(484, 336);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.InputDataTextBox);
@@ -140,7 +141,7 @@ namespace KeyDeck
             this.Controls.Add(this.KeyLabel);
             this.Controls.Add(this.FunctionDropDown);
             this.Name = "ChangeFunction";
-            this.Text = "ChangeFunction";
+            this.Text = "KeyDeck Edit Key";
             this.ResumeLayout(false);
             this.PerformLayout();
 

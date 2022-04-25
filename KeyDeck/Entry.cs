@@ -56,8 +56,8 @@ namespace KeyDeck
                     IntPtr pData = Marshal.AllocHGlobal(((int)bufferSize) * 2);
                     User32.GetRawInputDeviceInfo(raw.Header.Device, (uint)DeviceInfoTypes.RIDI_DEVICENAME, pData, ref bufferSize);
                     name = Marshal.PtrToStringAnsi(pData);
-                    //this.KeyHeader.Text = name;
-                    this.KeyHeader.Text = "Keyboard 1";
+                    this.KeyHeader.Text = name;
+                    //this.KeyHeader.Text = "Keyboard 1";
                     ushort vKey = (ushort)raw.Data.Keyboard.VirtualKey;
                     //this.PrimaryTextBox.Text = ((VirtualKeys)vKey).ToString();
                     //this.PrimaryTextBox.Text = "";
@@ -71,8 +71,9 @@ namespace KeyDeck
         private void StartButton_Click(object sender, EventArgs e)
         {
             PriKeyboard.PrimaryKeyboard = name;
-            var keyDeckMain = new KeyDeckMain(this);
-            keyDeckMain.Show();
+            //var keyDeckMain = new KeyDeckMain(this);
+            var keyDeckMenu = new KeyDeckMenu(this);
+            keyDeckMenu.Show();
             //Application.Run(new KeyDeckMain());
             this.Hide();
         }
@@ -92,10 +93,10 @@ namespace KeyDeck
             }
             //this.Close();
         }
-
+        /*
         private void PrimaryTextBox_TextChanged(object sender, EventArgs e)
         {
             this.StartButton.Enabled = true;
-        }
+        }*/
     }
 }

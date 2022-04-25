@@ -19,7 +19,7 @@ namespace KeyDeck
         private ushort virtualKey;
         private string function;
         //private string functionData;
-        private Keyboard keyboardData;
+        //private Keyboard keyboardData;
         
         /*public ChangeFunction(ushort vkey, string boardName)
         {
@@ -31,27 +31,27 @@ namespace KeyDeck
             this.FunctionDropDown.SelectedIndex = 0;
         }*/
 
-        public ChangeFunction(ushort vkey, string boardName, Keyboard keyboard)
+        public ChangeFunction(ushort vkey, string boardName)
         {
             InitializeComponent();
             virtualKey = vkey;
             keyboardName = boardName;
-            keyboardData = keyboard;
+            //keyboardData = keyboard;
 
             this.VirtualKeyLabel.Text = ((VirtualKeys)vkey).ToString();
             this.FunctionDropDown.SelectedIndex = 0;
             //Load key data
 
-            for (int i = 0; i < keyboardData.Keyboards.Count; i++)
+            for (int i = 0; i < KeyDeckMenu.keyboardData.Keyboards.Count; i++)
             {
-                if (keyboardName == keyboardData.Keyboards[i].Keyboard)
+                if (keyboardName == KeyDeckMenu.keyboardData.Keyboards[i].Keyboard)
                 {
-                    for (int j = 0; j < keyboardData.Keyboards[i].KeyData.Count; j++)
+                    for (int j = 0; j < KeyDeckMenu.keyboardData.Keyboards[i].KeyData.Count; j++)
                     {
-                        if (virtualKey == keyboardData.Keyboards[i].KeyData[j].Key)
+                        if (virtualKey == KeyDeckMenu.keyboardData.Keyboards[i].KeyData[j].Key)
                         {
-                            this.InputDataTextBox.Text = keyboardData.Keyboards[i].KeyData[j].FunctionData;
-                            string keyFun = keyboardData.Keyboards[i].KeyData[j].Function;
+                            this.InputDataTextBox.Text = KeyDeckMenu.keyboardData.Keyboards[i].KeyData[j].FunctionData;
+                            string keyFun = KeyDeckMenu.keyboardData.Keyboards[i].KeyData[j].Function;
 
                             switch (keyFun)
                             {
@@ -61,11 +61,14 @@ namespace KeyDeck
                                 case "INSERT":
                                     this.FunctionDropDown.SelectedIndex = 1;
                                     break;
-                                case "OPEN":
+                                case "FOLDER":
                                     this.FunctionDropDown.SelectedIndex = 2;
                                     break;
-                                case "SEND":
+                                case "PROGRAM":
                                     this.FunctionDropDown.SelectedIndex = 3;
+                                    break;
+                                case "SEND":
+                                    this.FunctionDropDown.SelectedIndex = 4;
                                     break;
                                 default:
                                     break;
@@ -94,7 +97,7 @@ namespace KeyDeck
              * Check keyboards
              * check keys
              * 
-             * if keyboard and key, save function and function dat
+             * if keyboard and key, save function and function data
              * 
              * if keyboard !key, list.add new keydata
              * 
@@ -105,19 +108,19 @@ namespace KeyDeck
             //maybe this right
             bool definedBoard = false;
             //Keyboard data was null
-            for (int i = 0; i < keyboardData.Keyboards.Count; i++)
+            for (int i = 0; i < KeyDeckMenu.keyboardData.Keyboards.Count; i++)
             {
-                if (keyboardName == keyboardData.Keyboards[i].Keyboard)
+                if (keyboardName == KeyDeckMenu.keyboardData.Keyboards[i].Keyboard)
                 {
                     definedBoard = true;
 
                     bool definedKey = false;
-                    for (int j = 0; j < keyboardData.Keyboards[i].KeyData.Count; j++)
+                    for (int j = 0; j < KeyDeckMenu.keyboardData.Keyboards[i].KeyData.Count; j++)
                     {
-                        if (virtualKey == keyboardData.Keyboards[i].KeyData[j].Key)
+                        if (virtualKey == KeyDeckMenu.keyboardData.Keyboards[i].KeyData[j].Key)
                         {
-                            keyboardData.Keyboards[i].KeyData[j].Function = function;
-                            keyboardData.Keyboards[i].KeyData[j].FunctionData = this.InputDataTextBox.Text;
+                            KeyDeckMenu.keyboardData.Keyboards[i].KeyData[j].Function = function;
+                            KeyDeckMenu.keyboardData.Keyboards[i].KeyData[j].FunctionData = this.InputDataTextBox.Text;
 
                             definedKey = true;
                             break;
@@ -132,7 +135,7 @@ namespace KeyDeck
                             Function = function,
                             FunctionData = this.InputDataTextBox.Text
                         };
-                        keyboardData.Keyboards[i].KeyData.Add(keydata);
+                        KeyDeckMenu.keyboardData.Keyboards[i].KeyData.Add(keydata);
                     }
                     
                     break;
@@ -153,12 +156,13 @@ namespace KeyDeck
                     Keyboard = keyboardName,
                     KeyData = new List<KeyData>()
                 };
-                keyboardData.Keyboards.Add(keyboardlist);
-                keyboardData.Keyboards[keyboardData.Keyboards.Count - 1].KeyData.Add(keydata);
+                KeyDeckMenu.keyboardData.Keyboards.Add(keyboardlist);
+                //keyboardData.Keyboards[keyboardData.Keyboards.Count - 1].KeyData.Add(keydata);
+                KeyDeckMenu.keyboardData.Keyboards[^ 1].KeyData.Add(keydata);
             }
 
             string fileName = "KeyboardData.json";
-            string jsonString = JsonSerializer.Serialize(keyboardData);
+            string jsonString = JsonSerializer.Serialize(KeyDeckMenu.keyboardData);
             File.WriteAllText(fileName, jsonString);
 
             this.Close();
@@ -176,9 +180,12 @@ namespace KeyDeck
                     function = "INSERT";
                     break;
                 case 2:
-                    function = "OPEN";
+                    function = "FOLDER";
                     break;
                 case 3:
+                    function = "PROGRAM";
+                    break;
+                case 4:
                     function = "SEND";
                     break;
             }

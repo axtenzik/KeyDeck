@@ -44,6 +44,9 @@ namespace KeyDeck
             this.ListedDataLabel = new System.Windows.Forms.Label();
             this.EscapeKeyLabel = new System.Windows.Forms.Label();
             this.TestLabel = new System.Windows.Forms.Label();
+            this.ToDoLabel = new System.Windows.Forms.Label();
+            this.MinimiseButton = new System.Windows.Forms.Button();
+            this.Refresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SelectorLabel
@@ -191,11 +194,43 @@ namespace KeyDeck
             this.TestLabel.TabIndex = 15;
             this.TestLabel.Text = "label1";
             // 
+            // ToDoLabel
+            // 
+            this.ToDoLabel.AutoSize = true;
+            this.ToDoLabel.Location = new System.Drawing.Point(12, 338);
+            this.ToDoLabel.Name = "ToDoLabel";
+            this.ToDoLabel.Size = new System.Drawing.Size(333, 15);
+            this.ToDoLabel.TabIndex = 16;
+            this.ToDoLabel.Text = "Dropdown for keyboards then dropdown for keys to manually";
+            // 
+            // MinimiseButton
+            // 
+            this.MinimiseButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MinimiseButton.Location = new System.Drawing.Point(369, 318);
+            this.MinimiseButton.Name = "MinimiseButton";
+            this.MinimiseButton.Size = new System.Drawing.Size(103, 50);
+            this.MinimiseButton.TabIndex = 17;
+            this.MinimiseButton.Text = "Minimise";
+            this.MinimiseButton.UseVisualStyleBackColor = true;
+            this.MinimiseButton.Click += new System.EventHandler(this.MinimiseButton_Click);
+            // 
+            // Refresh
+            // 
+            this.Refresh.Location = new System.Drawing.Point(392, 289);
+            this.Refresh.Name = "Refresh";
+            this.Refresh.Size = new System.Drawing.Size(75, 23);
+            this.Refresh.TabIndex = 18;
+            this.Refresh.Text = "Refresh devices";
+            this.Refresh.UseVisualStyleBackColor = true;
+            // 
             // KeyDeckMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.Refresh);
+            this.Controls.Add(this.MinimiseButton);
+            this.Controls.Add(this.ToDoLabel);
             this.Controls.Add(this.TestLabel);
             this.Controls.Add(this.EscapeKeyLabel);
             this.Controls.Add(this.ListedDataLabel);
@@ -235,6 +270,9 @@ namespace KeyDeck
         private System.Windows.Forms.Label ListedDataLabel;
         private System.Windows.Forms.Label EscapeKeyLabel;
         private System.Windows.Forms.Label TestLabel;
+        private System.Windows.Forms.Label ToDoLabel;
+        private System.Windows.Forms.Button MinimiseButton;
+        private System.Windows.Forms.Button Refresh;
     }
 }
 

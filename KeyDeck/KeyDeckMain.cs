@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -213,6 +214,51 @@ namespace KeyDeck
                                                 //User32.keybd_event((byte)'B', 0, 0, 0);
                                             }
                                             break;
+                                        case "FOLDER":
+                                            if (keyPressed == 0)
+                                            {
+                                                /*if (keyboardData.Keyboards[i].KeyData[j].FunctionData.EndsWith(".exe"))
+                                                {
+                                                    try
+                                                    {
+                                                        Process.Start(keyboardData.Keyboards[i].KeyData[j].FunctionData);
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+                                                        this.TestLabel.Text = e.ToString();
+                                                    }
+                                                }*/
+
+                                                try
+                                                {
+                                                    Process.Start("explorer.exe", keyboardData.Keyboards[i].KeyData[j].FunctionData);
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                    //this.TestLabel.Text = e.ToString();
+                                                    string message = "Unable to open folder";
+                                                    MessageBox.Show(message);
+                                                }
+                                            }
+                                            break;
+                                        case "PROGRAM":
+                                            if (keyPressed == 0)
+                                            {
+                                                try
+                                                {
+                                                    Process.Start(keyboardData.Keyboards[i].KeyData[j].FunctionData);
+                                                }
+                                                catch
+                                                {
+                                                    string message = "Unable to open Program";
+                                                    MessageBox.Show(message);
+                                                }
+                                            }
+                                            break;
+                                        case "SEND":
+                                            //Need to pass data to socket connection
+                                            //Need to also have a Form for starting Socket Connection
+                                            break;
                                         default:
                                             break;
                                     }
@@ -277,8 +323,8 @@ namespace KeyDeck
 
         private void ChangeFunctionButton_Click(object sender, EventArgs e)
         {
-            var changeFunction = new ChangeFunction(vKey, keyboardName, keyboardData);
-            changeFunction.Show();
+            //var changeFunction = new ChangeFunction(vKey, keyboardName, keyboardData);
+            //changeFunction.Show();
         }
 
         private void DeleteFunctionButton_Click(object sender, EventArgs e)
@@ -307,6 +353,12 @@ namespace KeyDeck
                     break;
                 }
             }
+        }
+
+        private void MinimiseButton_Click(object sender, EventArgs e)
+        {
+            //var testform = new KeyDeckMenu();
+
         }
     }
 }
